@@ -1,0 +1,16 @@
+<form [formGroup]="createForm">
+	<button (click)="addNewRow()">Add</button>
+	<kendo-grid [data]="view | async">
+		<kendo-grid-column field="name" title="Name" width="120">
+			<ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+				<input type="text" [formControl]="createForm.get('items').at(rowIndex).get('name')"
+                (blur)="onFocusOut(rowIndex)"/>
+            </ng-template>
+		</kendo-grid-column>
+		<kendo-grid-column field="age" title="Age" width="120">
+			<ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+				<input type="text" [formControl]="createForm.get('items').at(rowIndex).get('age')"/>
+            </ng-template>
+		</kendo-grid-column>
+	</kendo-grid>
+</form>
